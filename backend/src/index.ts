@@ -1,9 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import payRouter from './routes/pay';
-
-dotenv.config();
+import { WalletManager } from './services/wallet-manager';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -17,6 +16,12 @@ app.get('/health', (req, res) => {
   res.json({ status: 'live', network: 'Stellar Testnet' });
 });
 
-app.listen(port, () => {
-  console.log(`AgentMesh Payments Brain running on http://localhost:${port}`);
+const walletManager = new WalletManager();
+walletManager.initializeSponsor().then(() => {
+    app.listen(port, () => {
+        console.log(`AgentMesh Payments Brain running on http://localhost:${port}`);
+    });
+}).catch(err => {
+    console.error('Failed to initialize WalletManager:', err);
+    process.exit(1);
 });

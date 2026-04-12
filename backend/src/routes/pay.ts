@@ -1,8 +1,24 @@
 import { Router } from 'express';
 import { Orchestrator } from '../services/orchestrator';
+import { AdaFlow } from '../services/ada-flow';
 
 const router = Router();
 const orchestrator = new Orchestrator();
+const adaFlow = new AdaFlow();
+
+// Trigger the "Ada" Killer Flow
+router.post('/run', async (req, res) => {
+  try {
+    const { query } = req.body;
+    if (!query) return res.status(400).json({ error: 'Query is required' });
+
+    console.log(`[AgentMesh] Triggering Ada Research Flow for: ${query}`);
+    const result = await adaFlow.run(query);
+    res.json(result);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Unified Paid Call API
 router.post('/pay', async (req, res) => {
