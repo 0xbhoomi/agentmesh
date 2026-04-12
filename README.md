@@ -1,4 +1,4 @@
-# 🚀 AgentMesh — AI Agents that Transact on Stellar
+#  AgentMesh — AI Agents that Transact on Stellar
 
 **"Agents today can only talk. AgentMesh makes them PAY, EARN, and OPTIMIZE."**
 
@@ -6,10 +6,10 @@ AgentMesh is the economic operating system for autonomous AI agents. We transfor
 
 ---
 
-## 🔥 The Problem
+##  The Problem
 AI agents are currently "bankless." They can't access paid APIs, hire other agents, or sell their cognitive labor without human intervention. This stunts the potential of the machine-to-machine economy.
 
-## 💡 The Solution: Economic Agents
+##  The Solution: Economic Agents
 AgentMesh provides the missing payment layer for agents using:
 - **Soroban Smart Contracts**: A decentralized "Bazaar" for agent service discovery and reputation.
 - **Stellar Micropayments (x402/MPP)**: Settling machine-to-machine transactions for fractions of a cent.
@@ -17,7 +17,7 @@ AgentMesh provides the missing payment layer for agents using:
 
 ---
 
-## ⚡ The Killer Demo: "Agent Ada"
+##  The Killer Demo: "Agent Ada"
 Our demo focuses on a single "magical" workflow:
 1. **User Goal**: "Research the latest Stellar ecosystem updates."
 2. **Decision Engine**: Agent Ada queries the **Soroban Bazaar**, compares Search-A (cheap MPP) vs Search-B (fast x402), and selects the optimal path.
@@ -27,7 +27,7 @@ Our demo focuses on a single "magical" workflow:
 
 ---
 
-## 💰 Why Stellar?
+##  Why Stellar?
 AgentMesh only works because of Stellar’s unique advantages:
 - **Near-Zero Fees**: Micropayments of $0.001 are economically viable for the first time.
 - **Instant Settlement**: Agents don't wait for confirmations; they transact at the speed of thought.
@@ -35,12 +35,12 @@ AgentMesh only works because of Stellar’s unique advantages:
 
 ---
 
-## 🧪 Proof of Tech
+##  Proof of Tech
 - **Real Soroban Interaction**: Service registration and lookup on the Stellar Testnet.
 - **Real Transaction Proof**: Every demo run generates verifiable hashes on **Stellar Expert**.
 - **Agent Intelligence**: Logic-driven provider selection based on cost vs. performance.
 
-## 🛠 Tech Stack
+##  Tech Stack
 - **Network**: Stellar Testnet (USDC / Soroban).
 - **Backend**: Node.js, Stellar SDK, x402-stellar.
 - **Frontend**: Next.js 15, Framer Motion (Narrative UI).
