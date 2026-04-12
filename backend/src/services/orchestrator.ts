@@ -41,7 +41,8 @@ export class Orchestrator {
   // Fixed Provider Addresses for Authenticity
   private readonly PROVIDERS = {
     'Search-A': 'GDL2Q6VMB2I4M6T7W6E4PXQ6R4X4I6M7W6E4PXQ6R4X4I6M7W6E4PXQ6', // Fake but valid-formatted for demo
-    'Search-B': 'GDR3S7WNC3J5N7U8X7F5J7WNC3J5N7U8X7F5J7WNC3J5N7U8X7F5J7W'
+    'Search-B': 'GDR3S7WNC3J5N7U8X7F5J7WNC3J5N7U8X7F5J7WNC3J5N7U8X7F5J7W',
+    'Summarizer-B': 'GDCAUKSXVGZDGCVPOFVF7ZNKJTFTDZKEFTIKTKS5AIJBA37LXK72WL7A'
   };
 
   constructor() {
@@ -145,7 +146,8 @@ export class Orchestrator {
         // Fallback for demo if contract is empty
         return [
           { id: 1, name: 'Search-A', price: '0.001', speed: 80, trust: 95, type: 'MPP', endpoint: 'http://search-a/api' },
-          { id: 2, name: 'Search-B', price: '0.005', speed: 95, trust: 99, type: 'x402', endpoint: 'http://search-b/api' }
+          { id: 2, name: 'Search-B', price: '0.005', speed: 95, trust: 99, type: 'x402', endpoint: 'http://search-b/api' },
+          { id: 3, name: 'Summarizer-B', price: '0.005', speed: 85, trust: 98, type: 'x402', endpoint: 'http://summarizer-b/api' }
         ];
     }
   }

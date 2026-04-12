@@ -16,7 +16,8 @@ import {
   DollarSign,
   Terminal,
   Settings,
-  Bell
+  Bell,
+  Users
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -28,7 +29,8 @@ export default function Dashboard() {
   
   const steps = [
     { id: 'discover', label: 'Discovery', icon: Search },
-    { id: 'decide', label: 'Logic', icon: Terminal },
+    { id: 'execute', label: 'Logic', icon: Terminal },
+    { id: 'collaborate', label: 'Mesh', icon: Users },
     { id: 'pay', label: 'Payment', icon: DollarSign },
     { id: 'earn', label: 'Revenue', icon: TrendingUp },
   ];
@@ -55,7 +57,8 @@ export default function Dashboard() {
 
       for (let i = 0; i < data.events.length; i++) {
         const event = data.events[i];
-        if (['discover', 'pay', 'earn', 'complete'].includes(event.step)) {
+        // Advance stepper for specific stages
+        if (['discover', 'collaborate', 'pay', 'earn', 'complete'].includes(event.step)) {
             setCurrentStep(prev => prev + 1);
         }
         addLog({ id: Date.now() + i, ...event });
@@ -104,19 +107,19 @@ export default function Dashboard() {
                     Agent Ada <span className="text-sky-500">Mission Control</span>
                 </h1>
                 <p className="text-slate-500 text-lg mb-12 max-w-lg font-medium leading-relaxed">
-                    Autonomous research, real Stellar payments, and revenue capture finalized on-chain.
+                    Autonomous collaborative economy. Agents hiring agents via Stellar USDC.
                 </p>
 
                 {/* Progress Stepper (Black Labels) */}
-                <div className="flex justify-center items-center gap-6 mb-16 w-full max-w-md">
+                <div className="flex justify-center items-center gap-6 mb-16 w-full max-w-lg">
                     {steps.map((step, i) => (
                         <div key={step.id} className="flex flex-col items-center gap-2">
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
+                            <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center transition-all ${
                                 currentStep >= i ? 'bg-sky-500 text-white shadow-[0_10px_20px_rgba(14,165,233,0.3)]' : 'bg-slate-100 text-slate-300'
                             }`}>
-                                {currentStep > i ? <CheckCircle2 className="w-5 h-5" /> : <step.icon className="w-5 h-5" />}
+                                {currentStep > i ? <CheckCircle2 className="w-5 h-5" /> : <step.icon className="w-4 h-4 lg:w-5 lg:h-5" />}
                             </div>
-                            <span className="text-[9px] font-black uppercase text-slate-900 tracking-widest">{step.label}</span>
+                            <span className="text-[8px] font-black uppercase text-slate-900 tracking-widest">{step.label}</span>
                         </div>
                     ))}
                 </div>
@@ -133,7 +136,7 @@ export default function Dashboard() {
                     }`}
                 >
                     {isSimulating ? <RefreshCcw className="animate-spin w-6 h-6" /> : <Zap className="w-6 h-6 fill-current" />}
-                    {isSimulating ? 'Processing Transaction...' : 'Launch Agent Ada'}
+                    {isSimulating ? 'Processing economic mesh...' : 'Launch Agent Ada'}
                 </motion.button>
             </div>
         </motion.div>
@@ -147,7 +150,7 @@ export default function Dashboard() {
                         {logs.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center opacity-30 gap-4">
                                 <Search className="w-12 h-12 text-slate-200" />
-                                <p className="text-xs font-bold text-slate-400">System Ready</p>
+                                <p className="text-xs font-bold text-slate-400">Mesh Ready</p>
                             </div>
                         )}
                         {logs.map((log) => (
@@ -158,8 +161,8 @@ export default function Dashboard() {
                                 animate={{ opacity: 1, y: 0 }}
                                 className={`p-4 rounded-3xl bg-slate-50 border border-slate-100 flex items-center gap-4 transition-all hover:border-sky-200`}
                             >
-                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${log.step === 'pay' ? 'bg-sky-500 shadow-sm' : 'bg-slate-200'}`}>
-                                    {log.step === 'pay' ? <DollarSign className="w-4 h-4 text-white" /> : <Activity className="w-4 h-4 text-slate-400" />}
+                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${log.step === 'pay' ? 'bg-sky-500 shadow-sm' : log.step === 'collaborate' ? 'bg-indigo-500 shadow-sm' : 'bg-slate-200'}`}>
+                                    {log.step === 'pay' ? <DollarSign className="w-4 h-4 text-white" /> : log.step === 'collaborate' ? <Users className="w-4 h-4 text-white" /> : <Activity className="w-4 h-4 text-slate-400" />}
                                 </div>
                                 <div className="flex-1 overflow-hidden text-left">
                                     <p className="text-xs font-bold text-slate-700 truncate leading-none mb-1">{log.message}</p>

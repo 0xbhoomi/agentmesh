@@ -36,10 +36,27 @@ export class AdaFlow {
                 reasoning: searchResult.reasoning
             });
 
-            // STEP 3: Report Generation
-            events.push({ step: 'generate', message: 'Ada: Processing search results into a professional report...' });
+            // STEP 3: Economic Collaboration (Hiring a Sub-Agent)
+            events.push({ step: 'collaborate', message: 'Ada: Hiring a Summarizer Agent to distill raw insights...' });
+            
+            const summaryResult = await this.orchestrator.executePaidCall({
+                service: 'Summarizer',
+                intent: `Summarize this data: ${searchResult.service_response.results[0]}`,
+                priority: 'balanced',
+                agent_id: 'ada-researcher'
+            });
+
+            events.push({ 
+                step: 'pay', 
+                message: `Ada: Paid ${summaryResult.receipt.amount} USDC to Briefing-GPT.`,
+                tx_hash: summaryResult.receipt.tx_hash,
+                explorer_link: summaryResult.receipt.explorer_link
+            });
+
+            // STEP 4: Final Report Generation
+            events.push({ step: 'generate', message: 'Ada: Assembling collaborative briefing into final mission asset...' });
             await new Promise(r => setTimeout(r, 2000));
-            const report = `Stellar Ecosystem Report: ${query}\nAnalysis: Micropayments are booming...`;
+            const report = `Stellar Briefing (Collaborative): ${query}\nAbstract: ${summaryResult.service_response.results[0]}`;
 
             // STEP 4: Listing for Sale
             events.push({ step: 'list', message: 'Ada: Listing the final report in the Bazaar for other agents to buy...' });
